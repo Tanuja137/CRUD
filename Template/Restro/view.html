@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Food Orders</title>
+<style>
+    /* Your CSS styles here */
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Food Orders</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Food Item</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.phone_number }}</td>
+                    <td>{{ order.order_item }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>${{ order.total_price }}</td>
+                    <td>
+                        <form action="{% url 'delete_order' order.id %}" method="post" style="display: inline-block;">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+{% endblock content %}

@@ -1,0 +1,12 @@
+<!-- Restro/templates/Restro/delete_confirm.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Confirm Deletion</h2>
+<p>Are you sure you want to delete the order for {{ order.name }}?</p>
+<form action="{% url 'delete_order' order.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+
+{% endblock content %}
